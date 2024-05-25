@@ -30,6 +30,8 @@
         color: white;
         width: 150px;
         height: 50px;
+        margin:auto;
+
       }
       div.visualizarseção > input {
         display: inline;
@@ -141,10 +143,14 @@
       }
       #percminimo, #percmaximo{
         width: 50px;
-        margin: auto;
         text-align: center;
 
       }
+p.perc{
+margin:auto;
+text-align: center;
+
+}
     </style>
   </head>
   <body>
@@ -221,10 +227,10 @@
     
 
         <label for="cargamin">% Mínimo de Carga:</label>
-        <p><input type="number" min="10" max="100" name="cargamin" id="percminimo">%</p>
+        <p class="perc"><input type="number" min="10" max="100" name="cargamin" id="percminimo"></p>
         <label for="cargamax">% Máximo de Carga:</label>
 
-        <p><input type="number" min="10" max="100" name="cargamax" id="percmaximo">%</p>
+        <p class="perc"><input type="number" min="10" max="100" name="cargamax" id="percmaximo"></p>
 
         <div>
             <button type="button" onclick="calcular()">Calcular 1 RM</button>
