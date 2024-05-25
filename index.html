@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="estilos/estilo.css" />
+    <title>Calcular Carga</title>
+    <style>
+      body {
+        background-image: url(estilos/imagens/fundo-academia2.jpg);
+        background-size: contain;
+        background-attachment: fixed;
+
+        background-position-y: 35%;
+      }
+      h1,
+      h2 {
+        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+      }
+      div.form {
+        text-align: center;
+        
+      }
+      #container {
+        display: flex;
+        align-items: center;
+      }
+
+      button {
+        color: white;
+        width: 150px;
+        height: 50px;
+      }
+      div.visualizarseção > input {
+        display: inline;
+        color: white;
+        background-color: rgb(63, 63, 63);
+        width: 150px;
+      }
+      select#visualizarsecao {
+        display: inline;
+        color: white;
+        background-color: rgb(63, 63, 63);
+        width: 100px;
+      }
+
+      div#resultado1RM {
+        width: 300px;
+        height: 150px;
+        border-radius: 25px;
+        border: 1.5px solid transparent;
+        box-shadow: inset 0 0 0 1px black;
+        background-color: gray;
+        margin: auto;
+        margin-top: 5px;
+        display: none;
+      }
+
+      div#resultado1RM p {
+        font-size: 1.4em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        text-align: center;
+
+        padding-top: 8px;
+        color: White;
+      }
+
+      main h2 {
+        margin-bottom: 0px;
+        padding: 5px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #8b0000;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        margin-top: 20px;
+        border: 1.5px solid transparent;
+        box-shadow: inset 0 0 0 1px black;
+      }
+
+      .btn2 {
+        background-color: #8b0000;
+        color: #fff;
+        border-radius: 5px;
+        margin-top: 40px;
+        border: 1.5px solid transparent;
+        box-shadow: inset 0 0 0 1px black;
+        text-align: center center;
+      }
+
+      .btn:hover {
+        background-color: #0056b3;
+      }
+      #addTreino {
+        display: none;
+        position: fixed;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 380px;
+        text-align: center;
+        padding: 20px;
+
+        z-index: 999;
+        width: 210px;
+
+        border-radius: 25px;
+        border: 1.5px solid transparent;
+        box-shadow: inset 0 0 0 1px black;
+        background-color: gray;
+      }
+      #mostrar {
+        background-color: black;
+        border: none;
+        width: 100%;
+        height: 25px;
+        color: white;
+        font-size: 1.2em;
+        margin: auto;
+        padding: 0px;
+        display: none;
+      }
+      label {
+        display: block;
+        padding: 0px;
+        margin: auto;
+        margin-top: 20px;
+        color: rgb(244, 235, 235);
+        font-size: 1.2em;
+        text-shadow: 1px solid white;
+        background-color: rgba(0, 0, 0, 0.589);
+        text-align: center;
+      }
+      fieldset{
+        color: white;
+      }
+      #percminimo, #percmaximo{
+        width: 50px;
+        margin: auto;
+        text-align: center;
+
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+        <h2>Calcule sua força máxima agora!</h2>
+      <div class="form">
+        <input type="text" id="nome" placeholder="Digite seu Nome" /><br />
+
+        <input
+          type="number"
+          id="peso"
+          placeholder="Digite seu Peso Atual(KG)"
+        /><br />
+
+        <select id="nivel">
+          <option value="" disabled selected hidden>Escolha seu Nível</option>
+          <option value="iniciante">Iniciante</option>
+          <option value="experiente">Experiente</option>
+        </select>
+      <h1>
+       
+        PREPARADO PARA CONHECER SUA FORÇA MÁXIMA?
+      </h1>
+    </header>
+    <main>
+      <h2>VAMOS COMEÇAR!!!</h2>
+
+      <div class="form">
+        <div id="container">
+          <div>
+            <input
+              type="text"
+              name="exercicio"
+              id="exercicio"
+              placeholder="Digite o nome do Exercício"
+            />
+            <input
+              type="number"
+              id="repetiçaomax"
+              name="rm"
+              placeholder="Repetições realizadas"
+            />
+            <input
+              type="number"
+              id="cargakg"
+              name="carga"
+              placeholder="Carga utilizada(KG)"
+            />
+            <input
+              type="number"
+              name="barra"
+              id="barrakg"
+              placeholder="Digite cargas Extras (KG)"
+            />
+            <select name="percentual" id="percentualPeso">
+              <option value="0">
+                0%(Exercício não utiliza peso do corpo.)
+              </option>
+              <option value="90">
+                90%(ex:Barra Fixa, Paralela, Panturrilha)
+              </option>
+              <option value="70">70%(ex:Agachamentos)</option>
+              <option value="40">40%(ex:Apoio, elevacão pélvica)</option>
+              <option value="20">20%(ex:Abdominais)</option>
+            </select>
+          </div>
+          
+        </div>
+      </div>
+
+      
+      
+
+    
+
+        <label for="cargamin">% Mínimo de Carga:</label>
+        <p><input type="number" min="10" max="100" name="cargamin" id="percminimo">%</p>
+        <label for="cargamax">% Máximo de Carga:</label>
+
+        <p><input type="number" min="10" max="100" name="cargamax" id="percmaximo">%</p>
+
+        <div>
+            <button type="button" onclick="calcular()">Calcular 1 RM</button>
+          </div>
+        <div id="resultado1RM"></div>
+       
+
+      </div>
+      <fieldset>
+        <legend>Histórico de Exercícios</legend>
+              <div id="historico"></div>
+        
+        
+        <input type="button" value="Excluir Históricos" onclick="excluirHistorico()">
+
+        </fieldset>
+        <input type="button" value="Gerar Histórico" onclick="gerarHistorico()">
+          <div><input type="button" value="Ocultar Histórico" onclick="ocultar()"></div>
+     
+
+     
+      <footer>
+        <p>&copy; 2024 Rodrigo Ferrari Personal trainer</p>
+      </footer>
+    </main>
+    <footer></footer>
+    
+    <script>
+      var todosHistoricos = JSON.parse(localStorage.getItem("historicos")) || [];
+      var nome 
+      var peso 
+      var nivel 
+
+     
+
+      var rm,
+        barra,
+        percentualPeso,
+        resultado,
+        formula,
+        formulaGeral,
+        carga,
+        percmin,
+        percmax,
+        cargaMinima,
+        cargaMax;
+
+      var regex = /^\d+$/;
+
+      function calcular() {
+        nome = document.getElementById("nome").value;
+        peso = Number(document.getElementById("peso").value);
+        nivel = document.getElementById("nivel").value;
+        percmin = Number(document.getElementById("percminimo").value);
+        percmax = Number(document.getElementById("percmaximo").value);
+
+        formula = "";
+        rm = Number(document.getElementById("repetiçaomax").value);
+        carga = Number(document.getElementById("cargakg").value);
+        barra = Number(document.getElementById("barrakg").value);
+
+        switch (document.getElementById("percentualPeso").value) {
+          case "0":
+            percentualPeso = peso * 0;
+            break;
+          case "90":
+            percentualPeso = Math.round(peso * 0.9);
+            break;
+          case "70":
+            percentualPeso = Math.round(peso * 0.7);
+            break;
+          case "40":
+            percentualPeso = Math.round(peso * 0.4);
+            break;
+          case "20":
+            percentualPeso = Math.round(peso * 0.2);
+            break;
+        }
+        carga += barra + percentualPeso;
+        exercicio = document.getElementById("exercicio").value;
+
+        resultado = document.getElementById("resultado1RM");
+
+       
+        regex = /^\d+$/;
+
+        if (
+          !rm ||
+          !regex.test(rm) ||
+          !carga ||
+          !regex.test(carga) ||
+          !regex.test(percmin) ||
+          !regex.test(percmax) ||
+          !exercicio.trim()
+          || percmax < 20 || percmax > 100 || percmin < 20 || percmin > 100 
+        ) {
+          window.alert("[ERRO] Preencha os dados corretamente!!!");
+        } else {
+          if (rm === 1) {
+            formula = carga;
+          } else if (nivel === "iniciante") {
+            formula = Math.round(0.033 * rm * carga + carga);
+          } else if (nivel === "experiente") {
+            formula = Math.round(carga * (1 + 0.025 * rm));
+          }
+          formulaGeral = Math.round(formula - barra - percentualPeso);
+          cargaMinima = Math.round(formula * (percmin / 100) - barra - percentualPeso);
+        cargaMax = Math.round(formula * (percmax / 100) - barra - percentualPeso);
+          resultado.innerHTML = "";
+
+          resultado.innerHTML += `<p>${exercicio}</p>`;
+          resultado.innerHTML += `<p>1RM ≈ <strong>${formulaGeral} KG</strong>.</p>`;
+          resultado.innerHTML += `<p>Carga entre ${cargaMinima}KG e ${cargaMax}KG.</p>`;
+          resultado.style.display = "block";
+
+          todosHistoricos.push(`<h2>${exercicio}/${nome}/</h2><p>1RM ≈ <strong>${formulaGeral} KG</strong>. ${rm} repeticões. Carga: ${carga-barra-percentualPeso}Kg.Carga Total: ${carga}Kg. Barra ou Equipamentos: ${barra}Kg. Peso Corporal: ${peso}KG.</p>`)
+          localStorage.setItem("historicos", JSON.stringify(todosHistoricos));
+        }
+      }
+      function gerarHistorico(){
+        historico.innerHTML = "";
+        todosHistoricos.forEach((item, index) => {
+        historico.innerHTML += item;
+        });
+    }
+    function excluirHistorico(){
+    todosHistoricos = [];
+    localStorage.setItem("historicos", JSON.stringify(todosHistoricos));
+    gerarHistorico();
+
+    }
+    function ocultar(){
+      historico.innerHTML = "";
+
+    }
+     
+
+    
+    </script>
+  </body>
+</html>
