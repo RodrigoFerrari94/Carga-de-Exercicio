@@ -261,13 +261,12 @@ div#logo{
         <input type="button" value="Gerar Histórico" onclick="gerarHistorico()">
           <div><input type="button" value="Ocultar Histórico" onclick="ocultar()"></div>
      
-
+    </main>
      
       <footer>
         <p>&copy; 2024 Rodrigo Ferrari Personal trainer</p>
       </footer>
-    </main>
-    <footer></footer>
+   
     
     <script>
       var todosHistoricos = JSON.parse(localStorage.getItem("historicos")) || [];
@@ -292,6 +291,7 @@ div#logo{
       var regex = /^\d+$/;
 
       function calcular() {
+        
         nome = document.getElementById("nome").value;
         peso = Number(document.getElementById("peso").value);
         nivel = document.getElementById("nivel").value;
@@ -325,10 +325,14 @@ div#logo{
 
         resultado = document.getElementById("resultado1RM");
 
-       
-        regex = /^\d+$/;
 
         if (
+          !nivel ||
+          !regex.test(nivel) ||
+          !peso ||
+          !regex.test(peso) ||
+          !nome ||
+          !regex.test(nome) ||
           !rm ||
           !regex.test(rm) ||
           !carga ||
