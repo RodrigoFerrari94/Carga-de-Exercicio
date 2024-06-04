@@ -238,10 +238,10 @@ div#logo{
     
 
         <label for="cargamin">% Mínimo de Carga:</label>
-        <p class="perc"><input type="number" min="10" max="100" name="cargamin" id="percminimo"></p>
+        <p class="perc"><input type="number" min="10" max="100" value="70" name="cargamin" id="percminimo"></p>
         <label for="cargamax">% Máximo de Carga:</label>
 
-        <p class="perc"><input type="number" min="10" max="100" name="cargamax" id="percmaximo"></p>
+        <p class="perc"><input type="number" min="10" max="100" value="85" name="cargamax" id="percmaximo"></p>
 
         <div>
             <button type="button" onclick="calcular()">Calcular 1 RM</button>
@@ -327,12 +327,12 @@ div#logo{
 
 
         if (
-          !nivel ||
-          !regex.test(nivel) ||
+          !nivel.trim() ||
+          
           !peso ||
           !regex.test(peso) ||
-          !nome ||
-          !regex.test(nome) ||
+          !nome.trim() ||
+          
           !rm ||
           !regex.test(rm) ||
           !carga ||
