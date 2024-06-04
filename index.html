@@ -255,7 +255,7 @@ div#logo{
               <div id="historico"></div>
         
         
-        <input type="button" value="Excluir Históricos" onclick="excluirHistorico()">
+        
 
         </fieldset>
         <input type="button" value="Gerar Histórico" onclick="gerarHistorico()">
@@ -369,14 +369,15 @@ div#logo{
         historico.innerHTML = "";
         todosHistoricos.forEach((item, index) => {
         historico.innerHTML += item;
+        historico.innerHTML += `<button onclick="excluirItem(${index})">Excluir</button>`;
         });
     }
-    function excluirHistorico(){
-    todosHistoricos = [];
-    localStorage.setItem("historicos", JSON.stringify(todosHistoricos));
-    gerarHistorico();
-
-    }
+    
+    function excluirItem(index){
+  todosHistoricos.splice(index, 1);
+  localStorage.setItem("historicos", JSON.stringify(todosHistoricos));
+  gerarHistorico();
+}
     function ocultar(){
       historico.innerHTML = "";
 
