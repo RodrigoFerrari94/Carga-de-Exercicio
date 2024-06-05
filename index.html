@@ -161,6 +161,9 @@ div#logo{
   margin-top: 30px;
 
 }
+div.historic{
+  text-align: center;
+}
     </style>
   </head>
   <body>
@@ -361,7 +364,7 @@ div#logo{
           resultado.innerHTML += `<p>Carga entre ${cargaMinima}KG e ${cargaMax}KG.</p>`;
           resultado.style.display = "block";
 
-          todosHistoricos.push(`<h2>${exercicio}/${nome}/</h2><p>1RM ≈ <strong>${formulaGeral} KG</strong>. ${rm} repeticões. Carga: ${carga-barra-percentualPeso}Kg.Carga Total: ${carga}Kg. Barra ou Equipamentos: ${barra}Kg. Peso Corporal: ${peso}KG.</p>`)
+          todosHistoricos.push(`<div class="historic"><h1>${exercicio}</h1> <h2> ${nome}</h2><p>1RM ≈ <strong>${formulaGeral} KG</strong></p> <p> Repeticões: ${rm} </p> <p> Carga: ${carga-barra-percentualPeso}Kg</p> <p>Carga Total: ≈ ${carga}Kg</p> <p> Barra ou Equipamentos: ${barra}Kg.</p> <p> Peso Corporal: ${peso}KG</p><p>${percmin}% e ${percmax}% da carga: Entre ${cargaMinima}kg e ${cargaMax}kg</p></div>`);
           localStorage.setItem("historicos", JSON.stringify(todosHistoricos));
         }
       }
@@ -370,6 +373,7 @@ div#logo{
         todosHistoricos.forEach((item, index) => {
         historico.innerHTML += item;
         historico.innerHTML += `<button onclick="excluirItem(${index})">Excluir</button>`;
+        
         });
     }
     
